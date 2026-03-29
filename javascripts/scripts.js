@@ -1261,7 +1261,7 @@ document.addEventListener("DOMContentLoaded", function () {
     else if (currentMgValue <= 17) dosage = "medium";
     else dosage = "high";
 
-    let imagePath = "../images/";
+    let imagePath = "images/";
     let text = "";
     let title = "ВАМ ПОДХОДИТ КАПСУЛА:";
 
@@ -1529,26 +1529,26 @@ const floatingDescription = document.getElementById("floatingDescription");
 const moodData = {
   0: {
     title: "КАПСУЛА ECHO",
-    backgroundImage: "../images/photoCalm.jpg",
-    cardImage: "../images/capsuleGreen2.svg",
+    backgroundImage: "images/photoCalm.jpg",
+    cardImage: "images/capsuleGreen2.svg",
     description: "позволяет нам ясно мыслить и принимать взвешенные решения",
   },
   1: {
     title: "КАПСУЛА NOVA",
-    backgroundImage: "../images/photoHappy.jpg",
-    cardImage: "../images/capsuleOrange1.svg",
+    backgroundImage: "images/photoHappy.jpg",
+    cardImage: "images/capsuleOrange1.svg",
     description: "делает жизнь ярче и наполняет её смыслом",
   },
   2: {
     title: "КАПСУЛА SOMNIA",
-    backgroundImage: "../images/photoSad.jpg",
-    cardImage: "../images/capsuleBlue5.png",
+    backgroundImage: "images/photoSad.jpg",
+    cardImage: "images/capsuleBlue5.png",
     description: "поможет сомредоточиться на работе и учёбе",
   },
   3: {
     title: "КАПСУЛА MOLIRA",
-    backgroundImage: "../images/photoNostalgic.jpg",
-    cardImage: "../images/capsulePink6.png",
+    backgroundImage: "images/photoNostalgic.jpg",
+    cardImage: "images/capsulePink6.png",
     description:
       "связывает нас с важными моментами прошлого, которые сформировали нас сегодня",
   },
