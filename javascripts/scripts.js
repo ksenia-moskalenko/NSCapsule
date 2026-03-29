@@ -1129,60 +1129,13 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 // курсор
-const root = document.documentElement;
-function setVar(name, val) {
-  root.style.setProperty(name, val);
-}
-
-function updateSVG() {
-  const freq = parseFloat(document.getElementById("noise-frequency").value);
-  const scale = document.getElementById("distortion-strength").value;
-  document
-    .querySelector("feTurbulence")
-    .setAttribute("baseFrequency", `${freq} ${freq}`);
-  document.querySelector("feDisplacementMap").setAttribute("scale", scale);
-}
-
 const follower = document.querySelector(".box");
-document.addEventListener("mousemove", (e) => {
-  follower.style.left = e.clientX - 100 + "px";
-  follower.style.top = e.clientY + "px";
-});
-
-function renderLine(text, baseX, baseY, distort) {
-  let x = baseX;
-  const chars = [...text];
-  const t = performance.now();
-  for (let i = 0; i < chars.length; i++) {
-    const c = chars[i];
-    const charWave = Math.sin(i * 0.45 + t * 0.003) * distort * 0.6;
-    const charVert = Math.cos(i * 0.2 + t * 0.002) * distort * 0.4;
-    ctx.fillText(c, x + charWave, baseY + charVert);
-    x += ctx.measureText(c).width;
-  }
+if (follower) {
+  document.addEventListener("mousemove", (e) => {
+    follower.style.left = e.clientX - 100 + "px";
+    follower.style.top = e.clientY + "px";
+  });
 }
-
-function animate() {
-  ctx.clearRect(0, 0, innerWidth, innerHeight);
-  // ctx.fillStyle = 'blue'
-  var grd = ctx.createLinearGradient(0, 0, innerWidth, 0);
-  grd.addColorStop(0, "blue");
-  grd.addColorStop(1, "#b0b6e8");
-
-  ctx.fillStyle = grd;
-  ctx.font = "3vw Arial";
-  ctx.textBaseline = "top";
-
-  for (let i = 0; i < leftText.length; i++) {
-    const y = startY + i * lineH;
-    const norm = y / innerHeight;
-    const distort = Math.pow(norm, 1.5) * 56;
-    renderLine(leftText[i], 20, y, distort);
-  }
-
-  requestAnimationFrame(animate);
-}
-requestAnimationFrame(animate);
 
 // окно1снизу
 // ========== МОДАЛЬНОЕ ОКНО С ДИНАМИЧЕСКИМ КОНТЕНТОМ ==========
@@ -1636,4 +1589,82 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && overlay && overlay.classList.contains("active")) {
     closeFullscreen();
   }
+  document.addEventListener("DOMContentLoaded", function () {
+    const popupContent = document.getElementById("popupContent");
+
+    if (!popupContent) return;
+
+    // Создаем canvas внутри попапа
+    const canvas = document.createElement("canvas");
+    canvas.style.width = "100%";
+    canvas.style.height = "200px";
+    canvas.style.display = "block";
+    canvas.style.margin = "20px 0";
+    canvas.style.borderRadius = "10px";
+    popupContent.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    const leftText = ["NS", "CAPSULE", "MUSIC"];
+    const startY = 30;
+    const lineH = 40;
+
+    function renderLine(text, baseX, baseY, distort) {
+      let x = baseX;
+      const chars = [...text];
+      const t = performance.now();
+      for (let i = 0; i < chars.length; i++) {
+        const c = chars[i];
+        const charWave = Math.sin(i * 0.45 + t * 0.003) * distort * 0.6;
+        const charVert = Math.cos(i * 0.2 + t * 0.002) * distort * 0.4;
+        ctx.fillText(c, x + charWave, baseY + charVert);
+        x += ctx.measureText(c).width;
+      }
+    }
+
+    function animate() {
+      if (!ctx || !canvas.parentNode) return;
+
+      resizeCanvas();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      var grd = ctx.createLinearGradient(0, 0, canvas.width, 0);
+      grd.addColorStop(0, "blue");
+      grd.addColorStop(1, "#b0b6e8");
+
+      ctx.fillStyle = grd;
+      ctx.font = "20px Arial";
+      ctx.textBaseline = "top";
+
+      for (let i = 0; i < leftText.length; i++) {
+        const y = startY + i * lineH;
+        const norm = y / canvas.height;
+        const distort = Math.pow(norm, 1.5) * 30;
+        renderLine(leftText[i], 20, y, distort);
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Запускаем анимацию только когда окно открыто
+    const observer = new MutationObserver(function () {
+      if (document.body.classList.contains("modal-open")) {
+        resizeCanvas();
+        animate();
+      }
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    // Первый запуск
+    resizeCanvas();
+  });
 });
