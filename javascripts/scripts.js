@@ -5,7 +5,6 @@ import { OrbitControls } from "OrbitControls";
 import { GLTFLoader } from "GLTFLoader";
 import { RectAreaLightUniformsLib } from "RectAreaLightUniformsLib";
 
-// Глобальная переменная для хранения загруженной модели
 let currentModel = null;
 
 RectAreaLightUniformsLib.init();
@@ -124,7 +123,7 @@ function initThree() {
   });
 }
 
-// ========== ПЛАВНАЯ ПРОКРУТКА МЕНЮ ==========
+// прогрузка меню
 document.addEventListener("DOMContentLoaded", function () {
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   function smoothScrollToElement(targetId) {
@@ -146,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ========== АНИМАЦИЯ ЦИФР ==========
+// анимация цифр
 function randomFourDigit() {
   return Math.floor(1000 + Math.random() * 9000);
 }
@@ -223,7 +222,7 @@ function setupMainAnimatedNumbers() {
 }
 document.addEventListener("DOMContentLoaded", setupMainAnimatedNumbers);
 
-// ========== СЛАЙДЕР ==========
+// слайдер
 const sliderEl = document.querySelector(".stepped-slider");
 const thumbEl = document.querySelector(".slider-thumb");
 const marksEl = document.querySelectorAll(".mark");
@@ -265,7 +264,7 @@ window.addEventListener("resize", () => {
 });
 setThumb(positions[0]);
 
-// ========== КРУТИЛКА ДЛЯ ЧАСОВ ==========
+// крутилка для часов
 function krutilka() {
   const clocks = document.querySelectorAll(".clock");
   const AMPLITUDE = 2.5;
@@ -280,7 +279,7 @@ function krutilka() {
   });
 }
 
-// ========== ЛЕТАЮЩИЕ КАПСУЛЫ ==========
+// летающие капсулы
 (function () {
   const CONTAINER_ID = "arena";
   const IMAGE_SIZE_VW = 2;
@@ -386,7 +385,7 @@ function krutilka() {
   }
 })();
 
-// ========== ЗВУКОВАЯ ВОЛНА ==========
+// звуковая волна
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("wave-button");
   const bars = document.querySelectorAll(".waveBar");
@@ -420,7 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ========== ПЕРЕМЕЩЕНИЕ ОБЛОЖЕК ==========
+// перемещене обложек
 (function () {
   const light = document.querySelector(".capsulePill-light.animated-capsule");
   const blue = document.querySelector(".capsulePill-blue.animated-capsule");
@@ -511,7 +510,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })();
 
-// ========== ПЛАВАЮЩАЯ ФИГУРА (КУРСОР) ==========
+// курсор
 const box = document.querySelector(".box");
 if (box) {
   document.addEventListener("mousemove", (e) => {
@@ -520,7 +519,7 @@ if (box) {
   });
 }
 
-// ========== МОДАЛЬНОЕ ОКНО "ПОДБЕРИ КАПСУЛУ" ==========
+// подбери капсулу
 document.addEventListener("DOMContentLoaded", function () {
   const openBtn = document.getElementById("show-button");
   const closeIcon = document.getElementById("closeIconBtn");
@@ -615,7 +614,7 @@ document.addEventListener("DOMContentLoaded", function () {
       closeModal();
   });
 
-  // Обновление результата при изменении слайдеров (если окно открыто)
+  // обнов резултат
   const updateIfOpen = () => {
     if (document.body.classList.contains("modal-open") && contentReady)
       showResult();
@@ -630,7 +629,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (veselo) veselo.addEventListener("change", updateIfOpen);
 });
 
-// ========== ОВЕРЛЕЙ КАРТОЧЕК НАСТРОЕНИЯ ==========
+// оверлей карточек настрой
 document.addEventListener("DOMContentLoaded", function () {
   const cards = document.querySelectorAll(".moodCard");
   const overlay = document.getElementById("fullscreenOverlay");

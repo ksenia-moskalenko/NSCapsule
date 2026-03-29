@@ -68,7 +68,7 @@
     transform: translateY(0);
   }
 }
-/* Анимация вращения для стрелки */
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
