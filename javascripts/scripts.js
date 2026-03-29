@@ -1209,7 +1209,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let scrollbarWidth = 0;
 
   // Путь к картинке-загрузке
-  const LOADING_IMAGE = "../images/strelka.svg";
+  const LOADING_IMAGE = "images/strelka.svg";
 
   // Функция для получения ширины скроллбара
   function getScrollbarWidth() {
@@ -1530,7 +1530,7 @@ const moodData = {
   0: {
     title: "КАПСУЛА ECHO",
     backgroundImage: "../images/photoCalm.jpg",
-    cardImage: "images/capsuleGreen2.svg",
+    cardImage: "../images/capsuleGreen2.svg",
     description: "позволяет нам ясно мыслить и принимать взвешенные решения",
   },
   1: {
