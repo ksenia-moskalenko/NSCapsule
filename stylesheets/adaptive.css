@@ -153,13 +153,12 @@
     font-size: 3vw;
     left: auto;
     right: -6vw;
-    top: -8vw;
+    top: -6vw;
   }
 
   .stripe-left {
     width: 40vw;
-
-    top: -7vw;
+    top: -5vw;
   }
 
   .stripe-right {
