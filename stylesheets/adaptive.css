@@ -1,0 +1,914 @@
+@media (min-width: 781px) and (max-width: 1440px) {
+  .section1 {
+    padding: 1vw 2vw;
+    min-height: auto;
+  }
+
+  .threedCap canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+  /* 2. Меню */
+  .menubar ul {
+    gap: 2.5vw;
+  }
+  .menubar a {
+    font-size: 0.8vw;
+    letter-spacing: 0.05em;
+  }
+
+  /* 3. Первый экран (секция 1) */
+  .text1 {
+    font-size: 8vw;
+    padding-top: 3vw;
+  }
+  .numbers .randomNumber {
+    font-size: 1.5vw;
+  }
+  .numbers2 .randomNumber2 {
+    font-size: 1.5vw;
+  }
+
+  /* /* 4. Секция с настроением (card'ы) */
+
+  .moodFrame {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .moodCard {
+    height: 30vw;
+    width: 100%;
+    background: white;
+    border-radius: 0;
+    border-top: 0.04vw solid #a9a9a9;
+    border-bottom: 0.04vw solid #a9a9a9;
+    border-left: 0.02vw solid #ececec;
+    border-right: 0.02vw solid #ececec;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transition:
+      transform 0.18s,
+      box-shadow 0.18s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .moodCardLabel {
+    font-family: "Helvetica NeueLight";
+    font-weight: bold;
+    font-size: 2vw;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: #1b1b1b;
+    text-align: center;
+    margin-bottom: 1.5vw;
+    user-select: none;
+    width: 100%;
+    line-height: 1.22;
+    transition:
+      color 0.18s,
+      margin-bottom 0.18s;
+  }
+
+  .moodCard:hover .moodCardLabel {
+    color: #fff;
+    margin-bottom: 18vw;
+  }
+
+  .moodCard:nth-child(1):hover {
+    background-image: url("../images/photoCalm.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .moodCard:nth-child(2):hover {
+    background-image: url("../images/photoHappy.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .moodCard:nth-child(3):hover {
+    background-image: url("../images/photoSad.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .moodCard:nth-child(4):hover {
+    background-image: url("../images/photoNostalgic.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .fullscreen-overlay.active .fullscreen-background {
+    filter: blur(8px) brightness(0.5);
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+
+  /* Белый блок - делаем его больше и центрируем */
+  .floating-white-block {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 0 auto;
+    width: 60vw;
+    height: 35vw;
+    border-radius: 2vw;
+  }
+
+  /* Контейнер для картинки внутри белого блока */
+  .floating-image-container {
+    width: 20vw;
+    height: 35vw;
+  }
+
+  .floating-image {
+    width: 15vw;
+    height: 28vw;
+  }
+
+  /* Текст внутри белого блока */
+  .floating-text-content {
+    padding: 2vw;
+  }
+
+  .floating-title {
+    font-size: 2.5vw;
+  }
+
+  .floating-description {
+    font-size: 1.4vw;
+  }
+
+  /* Полоски-украшения */
+  .floating-title1 {
+    font-size: 3vw;
+    left: auto;
+    right: -6vw;
+    top: -8vw;
+  }
+
+  .stripe-left {
+    width: 40vw;
+
+    top: -7vw;
+  }
+
+  .stripe-right {
+    top: 18vw;
+    left: auto;
+    right: -23vw;
+    width: 32vw;
+  }
+
+  /* 6. Секция с волной */
+  .waveBars {
+    max-width: 75vw;
+  }
+  .waveButton {
+    font-size: 2vw;
+    padding: 1vw 4vw;
+  }
+
+  /* 7. Секция "Собери капсулу" */
+  .assemble-btn {
+    font-size: 2vw;
+    padding: 1vw 4vw;
+    top: 35vw; /* Поднимаем кнопку выше */
+  }
+  .capsulePill-light {
+    width: 35vw;
+    height: 35vw;
+  }
+  .capsulePill-blue {
+    width: 34vw;
+    height: 34vw;
+  }
+
+  /* 8. Секция "О нас" */
+  .capsuleAbout h2 {
+    font-size: 2.2vw;
+  }
+  .bigText {
+    padding: 0 15vw;
+  }
+  .box {
+    width: 20vw;
+    height: 20vw;
+    top: 12%;
+  }
+
+  /* 9. Бегущая строка */
+  .begstroka {
+    height: 4.5vw;
+  }
+  .run {
+    font-size: 3vw;
+    padding: 0.8vw 1vw;
+  }
+
+  /* 11. Модальное окно */
+  .popup-section {
+    width: 40vw;
+    height: 32vw;
+  }
+  .popup-section h2 {
+    font-size: 2vw;
+    top: 5vw;
+    left: 20%;
+  }
+  .progruz {
+    width: 12vw;
+    height: 12vw;
+    top: 11vw;
+    left: 35%;
+  }
+  #popupImage {
+    width: 12vw;
+    height: 12vw;
+  }
+  #extraText {
+    top: 25vw;
+  }
+  .recommendation-card p {
+    font-size: 1.2vw;
+  }
+
+  /* 12. Арена с капсулами */
+  .arena {
+    height: 35vw;
+  }
+  .floating-img img {
+    width: 15vw;
+    height: 27vw;
+  }
+
+  /* 13. Подвал */
+  .name,
+  .group {
+    font-size: 1.7vw;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 780px) {
+  .section1 {
+    padding: 2vw;
+    min-height: auto;
+    position: relative;
+    overflow: visible;
+  }
+
+  .threedCap {
+    width: 100%;
+    height: 55vh; /* Высота относительно окна */
+    min-height: 400px;
+    max-height: 600px;
+    position: relative;
+    overflow: visible;
+    margin: 2vw 0;
+  }
+
+  /* Canvas внутри контейнера - сохраняем пропорции */
+  .threedCap canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain; /* Сохраняет пропорции модели */
+  }
+  /* 12. Меню */
+  .menubar ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* Запрещаем перенос пунктов на новую строку */
+    justify-content: space-between; /* Равномерное распределение */
+    gap: 1vw;
+    width: 100%;
+    padding: 0;
+  }
+
+  .menubar li {
+    width: auto;
+    flex: 1; /* Все пункты занимают равную ширину */
+    text-align: center;
+    list-style: none;
+  }
+
+  .menubar a {
+    font-size: 1.8vw; /* Уменьшаем шрифт */
+    white-space: normal; /* Разрешаем перенос текста */
+    word-wrap: break-word; /* Переносим длинные слова */
+    display: block;
+    line-height: 1.3; /* Межстрочный интервал */
+    padding: 1vw 0.5vw;
+    text-decoration: none;
+  }
+
+  /* 13. Первый экран */
+  .text1 {
+    font-size: 12vw;
+    padding-top: 8vw;
+  }
+
+  .numbers .randomNumber,
+  .numbers2 .randomNumber2 {
+    font-size: 3.5vw;
+  }
+
+  .threedCap {
+    height: 60vh;
+    min-height: 300px;
+  }
+
+  /* /* 4. Секция с настроением (card'ы) */
+
+  /* 1. Секция с настроением (card'ы) - вертикальный столбец */
+  .moodFrame {
+    display: flex;
+    flex-direction: column; /* Карточки друг под другом */
+    gap: 2vw; /* Расстояние между карточками */
+    padding: 2vw;
+  }
+
+  .moodCard {
+    width: 100%; /* Каждая карточка на всю ширину */
+    height: 60vw; /* Высота карточки */
+    min-height: 250px; /* Минимальная высота для маленьких экранов */
+    max-height: 400px; /* Максимальная высота */
+    border-radius: 4vw; /* Скругляем углы */
+    margin-bottom: 0;
+  }
+
+  .moodCardLabel {
+    font-size: 6vw; /* Увеличиваем текст для мобильных */
+    margin-bottom: 4vw;
+  }
+
+  .moodCard:nth-child(1):hover {
+    background-image: url("../images/photoCalm.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .moodCard:nth-child(2):hover {
+    background-image: url("../images/photoHappy.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .moodCard:nth-child(3):hover {
+    background-image: url("../images/photoSad.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .moodCard:nth-child(4):hover {
+    background-image: url("../images/photoNostalgic.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .fullscreen-overlay.active .fullscreen-background {
+    filter: blur(8px) brightness(0.5);
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+
+  /* Белый блок - делаем его больше и центрируем */
+  .floating-white-block {
+    flex-direction: column;
+    width: 85vw;
+    min-height: 100vw;
+    top: 30vw;
+    left: 7.5vw;
+    padding: 1vw;
+  }
+
+  .floating-image-container {
+    width: 100%;
+    height: 60vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .floating-image {
+    width: 35vw;
+    height: 60vw;
+  }
+
+  .floating-text-content {
+    text-align: center;
+    padding: 2vw;
+  }
+
+  .floating-title {
+    font-size: 6vw;
+  }
+
+  .floating-description {
+    font-size: 4vw;
+    margin-top: 3vw;
+  }
+
+  .floating-title1 {
+    font-size: 6vw;
+    top: -8vw;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  /* 3. Кнопка закрытия оверлея */
+  .close-btn {
+    top: 3vw;
+    right: 5vw;
+    font-size: 8vw;
+    color: white;
+
+    width: 12vw;
+    height: 12vw;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stripe-left,
+  .stripe-right,
+  .floating-title1 {
+    display: none; /* Скрываем полоски на мобильных */
+  }
+  /* 6. Секция с волной */
+  .section3 {
+    height: auto;
+    padding: 5vw 2vw;
+  }
+  .waveBars {
+    max-width: 75vw;
+  }
+  .waveButton {
+    margin-top: 45vw;
+    border: 0.1vw black solid;
+
+    font-size: 5vw;
+    padding: 3vw 8vw;
+    top: auto;
+    left: auto;
+    position: relative;
+
+    display: block;
+  }
+
+  /* 7. Секция "Собери капсулу" */
+  .section4 {
+    min-height: 70vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5vw 2vw;
+  }
+
+  .capsuleSection-inner {
+    position: relative;
+    min-height: 70vw;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Контейнер для анимации капсул */
+  .capsule-animation-container {
+    position: relative;
+    width: 100%;
+    height: 60vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    flex: 1;
+  }
+
+  /* Общие стили для капсул */
+  .capsulePill {
+    position: absolute;
+    width: 40vw;
+    height: 40vw;
+    transition: all 0.8s cubic-bezier(0.34, 1.2, 0.64, 1);
+    cursor: pointer;
+    pointer-events: auto;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+  }
+
+  /* Светлая капсула */
+  .capsulePill-light {
+    top: 1vw;
+    left: 5vw;
+    transform: rotate(15deg);
+    z-index: 91;
+  }
+
+  /* Синяя капсула */
+  .capsulePill-blue {
+    top: -20vw;
+    left: 55vw;
+    transform: rotate(15deg);
+    z-index: 90;
+  }
+
+  /* Собранное состояние */
+  .animated-capsule.capsulePill-light.assembled {
+    left: 7vw;
+    top: 4vw;
+    transform: rotate(15deg);
+  }
+
+  .animated-capsule.capsulePill-blue.assembled {
+    left: 42vw;
+    top: -10vw;
+    transform: rotate(15deg);
+  }
+
+  /* Кнопка сборки */
+  .assemble-btn {
+    font-size: 5vw;
+    padding: 3vw 6vw;
+    position: relative;
+    margin: 0 auto 5vw auto;
+    display: block;
+    border: 0.2vw solid black;
+    border-radius: 20vw;
+    background: #ffffff;
+    font-family: "Helvetica NeueLight";
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 10;
+    text-align: center;
+    top: 58vw;
+    left: 29%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .assemble-btn:hover {
+    background: #f4f7ff;
+  }
+
+  /* Обложки альбомов - сохраняем ваши позиции */
+  .albumCover {
+    width: 8vw;
+    height: 8vw;
+    max-width: 40px;
+    max-height: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .albumCover-1 {
+    left: 2vw;
+    top: 5vw;
+  }
+  .albumCover-2 {
+    left: 12vw;
+    top: 10vw;
+  }
+  .albumCover-3 {
+    left: 22vw;
+    top: 8vw;
+  }
+  .albumCover-4 {
+    left: 2vw;
+    top: 18vw;
+  }
+  .albumCover-5 {
+    left: 15vw;
+    top: 13vw;
+  }
+  .albumCover-6 {
+    left: 28vw;
+    top: 16vw;
+  }
+  .albumCover-7 {
+    right: 2vw;
+    top: 45vw;
+  }
+  .albumCover-8 {
+    right: 12vw;
+    top: 40vw;
+  }
+  .albumCover-9 {
+    right: 22vw;
+    top: 45vw;
+  }
+  .albumCover-10 {
+    right: 4vw;
+    top: 38vw;
+  }
+  .albumCover-11 {
+    right: 15vw;
+    top: 48vw;
+  }
+  .albumCover-12 {
+    right: 28vw;
+    top: 42vw;
+  }
+
+  /* 6. Секция "О нас" */
+  .capsuleAbout h2 {
+    font-size: 6vw;
+  }
+
+  .bigText {
+    font-size: 4.5vw;
+    padding: 0 5vw;
+    line-height: 1.4;
+  }
+
+  .box {
+    position: absolute;
+    width: 28vw;
+    height: 28vw;
+    max-width: 280px;
+    max-height: 280px;
+    pointer-events: none;
+    z-index: 100;
+    animation: gentleFloat 15s ease-in-out infinite;
+    opacity: 0.9;
+    isolation: isolate;
+    touch-action: none;
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius, 34% 66% 28% 72% / 55% 44% 56% 45%);
+    overflow: hidden;
+  }
+
+  /* Восстанавливаем эффект преломления через псевдоэлемент */
+  .box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    box-shadow: inset var(--shadow-offset, 0) var(--shadow-offset, 0)
+      var(--shadow-blur, 20px) var(--shadow-spread, -5px)
+      var(--shadow-color, rgba(190, 190, 190, 0.7));
+    background-color: rgba(
+      var(--tint-color, 100, 100, 100),
+      var(--tint-opacity, 0.2)
+    );
+  }
+
+  .box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    backdrop-filter: blur(var(--frost-blur, 1px));
+    filter: url(#glass-distortion);
+    -webkit-backdrop-filter: blur(var(--frost-blur, 1px));
+    -webkit-filter: url(#glass-distortion);
+    pointer-events: none;
+  }
+
+  /* Анимация плавания в пределах блока .bigText */
+  @keyframes floatAmorph {
+    0% {
+      transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(-50%, -50%) translate(15vw, -8vw) rotate(5deg);
+    }
+    50% {
+      transform: translate(-50%, -50%) translate(-10vw, 10vw) rotate(-3deg);
+    }
+    75% {
+      transform: translate(-50%, -50%) translate(5vw, 15vw) rotate(2deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
+    }
+  }
+
+  /* Ограничиваем движение фигуры пределами блока .bigText */
+  .section5 {
+    position: relative;
+  }
+
+  .bigText {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+  }
+
+  .box {
+    position: absolute;
+    width: 30vw;
+    height: 30vw;
+    max-width: 300px;
+    max-height: 300px;
+    animation: floatInText 12s ease-in-out infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes floatInText {
+    0% {
+      top: 20%;
+      left: 10%;
+      transform: rotate(0deg) scale(1);
+    }
+    25% {
+      top: 60%;
+      left: 70%;
+      transform: rotate(45deg) scale(1.1);
+    }
+    50% {
+      top: 40%;
+      left: 30%;
+      transform: rotate(-30deg) scale(0.9);
+    }
+    75% {
+      top: 70%;
+      left: 50%;
+      transform: rotate(15deg) scale(1.05);
+    }
+    100% {
+      top: 20%;
+      left: 10%;
+      transform: rotate(0deg) scale(1);
+    }
+  }
+
+  /* 7. Бегущая строка */
+  .begstroka {
+    height: 10vw;
+    border: 0.1vw black solid;
+  }
+
+  .run {
+    font-size: 6vw;
+    padding: 2vw 0;
+  }
+
+  /* 11. Модальное окно */
+  .ShowButton {
+    border: 0.1vw black solid;
+
+    font-size: 5vw;
+    padding: 3vw 8vw;
+    top: auto;
+    left: auto;
+    position: relative;
+    margin: 5vw auto;
+    display: block;
+  }
+
+  /* 8. Секция "Подбери капсулу" */
+  .Podberi h2 {
+    margin-top: 3vw;
+    font-size: 6vw;
+  }
+
+  .stepped-slider {
+    width: 90vw;
+    height: 15vw;
+    margin-left: 5%;
+  }
+
+  .slider-track {
+    height: 2vw;
+  }
+
+  .slider-thumb {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .stepstext {
+    font-size: 3vw;
+    width: 95vw;
+    padding: 2vw;
+  }
+
+  .chasiIslider {
+    flex-direction: column;
+    gap: 5vw;
+  }
+
+  .chasi {
+    width: 100%;
+    justify-content: center;
+    gap: 5vw;
+  }
+
+  .clock {
+    width: 12vw;
+    height: 12vw;
+    border-width: 0.8vw;
+  }
+
+  .clock::after {
+    left: 5vw;
+    width: 1vw;
+    height: 3.5vw;
+  }
+  .strelka {
+    left: 5vw;
+    width: 1vw;
+    height: 3.5vw;
+  }
+  .sliderText {
+    font-size: 4vw;
+  }
+
+  .switch {
+    width: 13.5vw;
+    height: 6vw;
+  }
+
+  .switch_slider::before {
+    top: 0vw;
+    left: 0vw;
+    width: 5.4vw;
+    height: 5.4vw;
+  }
+
+  /* 9. Модальное окно */
+  .popup-section {
+    width: 85vw;
+    height: 80vw;
+  }
+
+  .popup-section h2 {
+    font-size: 5vw;
+    top: 10vw;
+    left: 20%;
+  }
+  #popupTitle {
+    font-size: 5vw;
+    text-align: center;
+    position: relative;
+    top: -30vw;
+    left: auto;
+    margin: 0;
+  }
+  .progruz,
+  #popupImage {
+    width: 50vw;
+    height: 50vw;
+    top: 15vw;
+    left: 22%;
+  }
+
+  #extraText {
+    top: 70vw;
+  }
+
+  .recommendation-card p {
+    font-size: 3.5vw;
+  }
+  .close-icon {
+    position: absolute;
+    top: 2vw;
+    right: 3vw;
+    font-size: 5vw;
+    width: 8vw;
+    height: 8vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  /* 10. Арена с капсулами */
+  .arena {
+    height: 80vw;
+  }
+
+  .floating-img img {
+    width: 30vw;
+    height: 50vw;
+  }
+
+  /* 11. Подвал */
+  .name,
+  .group {
+    font-size: 3.5vw;
+  }
+}

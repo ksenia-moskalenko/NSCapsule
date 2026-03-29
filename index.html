@@ -4,21 +4,438 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="stylesheets/style.css" />
-    <script defer src="javascripts/scripts.js"></script>
+
     <title>NsCapsule</title>
 
     <script type="importmap">
       {
         "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.139.0/build/three.module.js",
-          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.139.0/examples/jsm/"
+          "three": "https://unpkg.com/three@0.139.0/build/three.module.js",
+          "OrbitControls": "https://unpkg.com/three@0.139.0/examples/jsm/controls/OrbitControls.js",
+          "GLTFLoader": "https://unpkg.com/three@0.139.0/examples/jsm/loaders/GLTFLoader.js",
+          "RectAreaLightUniformsLib": "https://unpkg.com/three@0.139.0/examples/jsm/lights/RectAreaLightUniformsLib.js"
         }
       }
     </script>
+    <script defer type="module" src="javascripts/scripts.js"></script>
   </head>
   <body>
-    <section>
+    <section class="section1">
+      <div class="menubar">
+        <ul>
+          <li><a href="#bar1">выбери своё настроение</a></li>
+          <li><a href="#bar2">настрой волну</a></li>
+          <li><a href="#bar3">собери капсулу</a></li>
+          <li><a href="#bar4">о нас</a></li>
+          <li><a href="#bar5">подбери себе капсулу</a></li>
+          <li><a href="#bar6">поймай капсулу</a></li>
+        </ul>
+      </div>
+      <div class="text1">NS <samp>Studio</samp></div>
+      <div class="numbers">
+        <div class="randomNumber number1" id="randomNumber1">0000</div>
+        <div class="randomNumber number2" id="randomNumber2">0000</div>
+      </div>
       <div class="threedCap"></div>
+      <div class="numbers2">
+        <div class="randomNumber2 number3" id="rotationX">00∘00′00′′00</div>
+        <div class="randomNumber2 number4" id="rotationY">00∘00′00′′00</div>
+      </div>
+    </section>
+
+    <section class="section2" id="bar1" aria-label="Выбери своё настроение">
+      <div class="moodFrame">
+        <div class="moodCard moodCard-long" data-bg="images/photoCalm.jpg">
+          <div class="moodCardLabel moodCardLabel-wide">СПОКОЙСТВИЕ</div>
+        </div>
+        <div class="moodCard moodCard-long" data-bg="images/photoHappy.jpg">
+          <div class="moodCardLabel moodCardLabel-wide">РАДОСТЬ</div>
+        </div>
+        <div class="moodCard moodCard-long" data-bg="images/photoSad.jpg">
+          <div class="moodCardLabel moodCardLabel-wide">ГРУСТЬ</div>
+        </div>
+        <div class="moodCard moodCard-long" data-bg="images/photoNostalgic.jpg">
+          <div class="moodCardLabel moodCardLabel-wide">НОСТАЛГИЯ</div>
+        </div>
+      </div>
+    </section>
+    <!-- Оверлей для полноэкранного изображения -->
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+      <div class="fullscreen-background" id="fullscreenBackground"></div>
+
+      <div class="fullscreen-content">
+        <button class="close-btn" id="closeBtn">&times;</button>
+
+        <!-- Белый блок с контентом (плавает поверх фоновой картинки) -->
+        <div class="floating-white-block">
+          <div class="floating-stripes">
+            <div class="stripe stripe-left"></div>
+            <div class="stripe stripe-right"></div>
+            <h3 class="floating-title1" id="floatingTitle1">
+              <samp class="ns">NS</samp>Capsule
+            </h3>
+          </div>
+          <div class="floating-image-container">
+            <img
+              src=""
+              alt="Mood detail"
+              id="floatingImage"
+              class="floating-image"
+            />
+          </div>
+          <div class="floating-text-content">
+            <h2 class="floating-title" id="floatingTitle">Заголовок</h2>
+
+            <p class="floating-description" id="floatingDescription"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section3" id="bar2" aria-label="Настрой волну">
+      <div class="waveBars" id="wave-bars">
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+        <div class="waveBar"></div>
+      </div>
+      <div class="waveBlock">
+        <button class="waveButton" id="wave-button" type="button">
+          НАСТРОИТЬ ВОЛНУ
+        </button>
+      </div>
+    </section>
+
+    <section class="section4" id="bar3" aria-label="Собери капсулу">
+      <div class="capsuleSection-inner">
+        <button class="assemble-btn" id="assembleCapsuleBtn">
+          СОБРАТЬ КАПСУЛУ
+        </button>
+        <div class="capsule-animation-container" id="capsuleContainer">
+          <img
+            class="capsulePill capsulePill-light animated-capsule"
+            src="images/part1capsule.svg"
+            alt="Светлая капсула"
+          />
+          <img
+            class="capsulePill capsulePill-blue animated-capsule"
+            src="images/part2capsule.svg"
+            alt="Синяя капсула"
+          />
+        </div>
+
+        <img
+          class="albumCover albumCover-1 draggable-item"
+          src="images/obl1.svg"
+          alt="Обложка 1"
+        />
+        <img
+          class="albumCover albumCover-2 draggable-item"
+          src="images/obl2.svg"
+          alt="Обложка 2"
+        />
+        <img
+          class="albumCover albumCover-3 draggable-item"
+          src="images/obl3.svg"
+          alt="Обложка 3"
+        />
+        <img
+          class="albumCover albumCover-4 draggable-item"
+          src="images/obl4.svg"
+          alt="Обложка 4"
+        />
+        <img
+          class="albumCover albumCover-5 draggable-item"
+          src="images/obl5.svg"
+          alt="Обложка 5"
+        />
+        <img
+          class="albumCover albumCover-6 draggable-item"
+          src="images/obl6.svg"
+          alt="Обложка 6"
+        />
+        <img
+          class="albumCover albumCover-7 draggable-item"
+          src="images/obl7.svg"
+          alt="Обложка 7"
+        />
+        <img
+          class="albumCover albumCover-8 draggable-item"
+          src="images/obl8.svg"
+          alt="Обложка 8"
+        />
+        <img
+          class="albumCover albumCover-9 draggable-item"
+          src="images/obl9.svg"
+          alt="Обложка 9"
+        />
+        <img
+          class="albumCover albumCover-10 draggable-item"
+          src="images/obl10.svg"
+          alt="Обложка 10"
+        />
+        <img
+          class="albumCover albumCover-11 draggable-item"
+          src="images/obl11.svg"
+          alt="Обложка 11"
+        />
+        <img
+          class="albumCover albumCover-12 draggable-item"
+          src="images/obl12.jpg"
+          alt="Обложка 12"
+        />
+      </div>
+    </section>
+
+    <section class="section5" id="bar4">
+      <div class="capsuleAbout"><h2>О НАС</h2></div>
+
+      <div class="bigText">
+        <p>
+          В мире, где музыка стала невидимым и&nbsp;безостановочным потоком,
+          рождается NSStudio. Мы возвращаем музыке её вес, форму
+          и&nbsp;значение, создавая не&nbsp;просто продукт, а&nbsp;новый ритуал.
+          Наши Музыкальные Капсулы — это квинтэссенция момента, запечатанная
+          в&nbsp;лаконичном объекте. Мы верим, что&nbsp;звук должен быть
+          не&nbsp;только услышан, но&nbsp;и&nbsp;выбран, активирован
+          и&nbsp;прочувствован. Каждая капсула NSStudio — это портал в&nbsp;
+          определённое состояние: от&nbsp;сосредоточенной тишины утра
+          до&nbsp;заряженной энергии ночного города. Это тщательно собранные
+          миры из&nbsp;нот и&nbsp;тембров, существующие вне алгоритмов
+          и&nbsp;бесконечных лент рекомендаций. Наша философия проста —
+          осознанное погружение. Взяв в&nbsp;руки капсулу, вы заключаете договор
+          с&nbsp;самим собой: следующие минуты принадлежат только вам
+          и&nbsp;звуку.
+        </p>
+      </div>
+
+      <div class="box"></div>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="0"
+        height="0"
+        style="position: absolute; overflow: hidden"
+      >
+        <defs>
+          <filter
+            id="glass-distortion"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.008 0.008"
+              numOctaves="2"
+              seed="92"
+              result="noise"
+            />
+            <feGaussianBlur in="noise" stdDeviation="2" result="blurred" />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="blurred"
+              scale="77"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+      </svg>
+    </section>
+    <section class="section6">
+      <div class="begstroka">
+        <div class="run">
+          <p>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+            <span class="ns-item">NS</span
+            ><span class="studio-item">Studio</span>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="section7" id="bar5">
+      <div class="Podberi"><h2>ПОДБЕРИ СЕБЕ КАПСУЛУ</h2></div>
+
+      <div class="stepped-slider">
+        <div class="slider-track">
+          <div class="slider-fill"></div>
+          <div class="mark"></div>
+          <div class="mark"></div>
+          <div class="mark"></div>
+          <div class="mark"></div>
+          <div class="mark"></div>
+          <div class="mark"></div>
+        </div>
+        <div class="slider-thumb"></div>
+      </div>
+      <div class="stepstext">
+        <p>0 мг</p>
+        <p>5 мг</p>
+        <p>10 мг</p>
+        <p>15 мг</p>
+        <p>20 мг</p>
+        <p>25 мг</p>
+      </div>
+
+      <div class="chasiIslider">
+        <!-- часы -->
+        <div class="chasi">
+          <div class="docs-demos">
+            <div class="large centered row">
+              <div class="col">
+                <div class="clock"></div>
+                <div class="strelka"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="docs-demos">
+            <div class="large centered row">
+              <div class="col">
+                <div class="clock"></div>
+                <div class="strelka"></div>
+              </div>
+            </div>
+          </div>
+          <div class="docs-demos">
+            <div class="large centered row">
+              <div class="col">
+                <div class="clock"></div>
+                <div class="strelka"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- переключатель -->
+        <div class="sliderBox">
+          <div class="grustno">
+            <div class="sliderText">
+              <p>грустно</p>
+            </div>
+
+            <label class="switch">
+              <input type="checkbox" class="switch_input" />
+              <span class="switch_slider"></span>
+            </label>
+          </div>
+          <div class="veselo">
+            <div class="sliderText">
+              <p>весело</p>
+            </div>
+
+            <label class="switch">
+              <input type="checkbox" class="switch_input" />
+              <span class="switch_slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section8">
+      <button class="ShowButton" id="show-button" type="button">
+        Показать
+      </button>
+
+      <div class="overlay" id="overlay"></div>
+
+      <div
+        class="popup-section"
+        id="popupSection"
+        aria-modal="true"
+        aria-label="Дополнительная секция"
+      >
+        <button class="close-icon" id="closeIconBtn" aria-label="Закрыть">
+          ✕
+        </button>
+        <div id="popupContent">
+          <h2 id="popupTitle">ИДЁТ ПОДБОР...</h2>
+          <img
+            id="popupImage"
+            class="progruz"
+            src="../images/strelka.svg"
+            alt=""
+          />
+          <div id="extraText"></div>
+        </div>
+      </div>
+    </section>
+    <section class="section9" id="bar6">
+      <div id="arena" class="arena">
+        <div class="floating-img">
+          <img src="../images/capsuleBlue-Green3.svg" alt="capsule" />
+        </div>
+        <div class="floating-img">
+          <img src="../images/capsuleBlue5.png" alt="capsule" />
+        </div>
+        <div class="floating-img">
+          <img src="../images/capsuleGreen2.svg" alt="capsule" />
+        </div>
+        <div class="floating-img">
+          <img src="../images/capsuleOrange1.svg" alt="capsule" />
+        </div>
+        <div class="floating-img">
+          <img src="../images/capsulePeach4.svg" alt="capsule" />
+        </div>
+        <div class="floating-img">
+          <img src="../images/capsulePink6.png" alt="capsule" />
+        </div>
+      </div>
+    </section>
+    <section class="section10">
+      <div class="podval">
+        <div class="name">Москаленко Ксения</div>
+        <div class="group">Б25ДЗ11</div>
+      </div>
     </section>
   </body>
 </html>

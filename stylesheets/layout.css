@@ -3,18 +3,1282 @@
 }
 body {
   margin: 0;
-
-  font-family: sans-serif;
 }
 
+.section1 {
+  position: relative;
+  display: block;
+  padding: 2vw;
+}
+.menubar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  gap: 1vw;
+  width: 91vw;
+}
+
+.menubar li {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 3vw;
+}
+
+.menubar a {
+  display: inline-block;
+  text-decoration: none;
+  font-family: "Helvetica NeueLight";
+  font-size: 1vw;
+  color: #c5c5c5;
+}
+
+.text1 {
+  font-family: "Charito";
+  font-size: 10vw;
+  display: flex;
+  justify-content: center;
+  padding-top: 5vw;
+}
+samp {
+  font-family: "Helvetica NeueRoman";
+}
+.numbers {
+  padding-top: 7vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.randomNumber {
+  font-size: 2vw;
+  font-family: "Helvetica NeueLight";
+  color: rgb(0, 0, 0);
+}
 .threedCap {
-  width: 100%; /* Занимает всю доступную ширину flex-элемента */
-  height: 100%; /* Занимает всю доступную высоту flex-элемента */
-  cursor: grab;
+  width: 100%;
+  height: 100%;
   z-index: 1;
-  position: relative; /* На всякий случай, если внутри будут абсолютные элементы */
+  position: relative;
+  overflow: hidden;
 }
 
 .threedCap:active {
   cursor: grabbing;
+}
+.numbers2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.randomNumber2 {
+  font-size: 2vw;
+  font-family: "Helvetica NeueLight";
+  color: rgb(0, 0, 0);
+}
+
+/* ===== Frame: mood selection (section2) ===== */
+.section2 {
+  position: relative;
+  display: block;
+  overflow-x: hidden;
+}
+
+.moodFrame {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  background: #fff;
+  padding: 3vw 0;
+  box-sizing: border-box;
+  gap: 0;
+}
+
+.moodCard {
+  background: white;
+  border-radius: 0;
+  border-top: 0.04vw solid #a9a9a9;
+  border-bottom: 0.04vw solid #a9a9a9;
+  border-left: 0.02vw solid #ececec;
+  border-right: 0.02vw solid #ececec;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 45vw;
+  transition:
+    transform 0.18s,
+    box-shadow 0.18s;
+  cursor: pointer;
+  position: relative;
+  will-change: transform;
+}
+
+.moodCard:nth-child(1):hover {
+  background-image: url("../images/photoCalm.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.moodCard:nth-child(2):hover {
+  background-image: url("../images/photoHappy.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.moodCard:nth-child(3):hover {
+  background-image: url("../images/photoSad.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.moodCard:nth-child(4):hover {
+  background-image: url("../images/photoNostalgic.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.moodCardLabel {
+  font-family: "Helvetica NeueLight";
+  font-weight: bold;
+  font-size: 2.2vw;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #1b1b1b;
+  text-align: center;
+  margin-bottom: 2vw; /* ← Вот это свойство отвечает за вертикальное положение текста */
+  user-select: none;
+  width: 100%;
+  line-height: 1.22;
+  text-shadow: 0 2px 8px rgba(200, 255, 230, 0.1);
+  transition:
+    color 0.18s,
+    margin-bottom 0.18s; /* ← Добавим transition для margin-bottom, чтобы был плавный перенос */
+}
+
+.moodCard:hover .moodCardLabel {
+  color: #fff;
+  margin-bottom: 40vw; /* ← При наведении margin-bottom становится очень большим, и текст “уплывает наверх” */
+}
+
+/* Оверлей на весь экран */
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Уменьшил прозрачность, чтобы был виден блюр */
+  backdrop-filter: blur(10px); /* ДОБАВЛЯЕМ - размытие фона за оверлеем */
+  z-index: 1000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.fullscreen-overlay.active {
+  display: flex;
+  opacity: 1;
+  backdrop-filter: blur(10px); /* ДОБАВЛЯЕМ - при открытии применяем размытие */
+}
+.fullscreen-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  filter: blur(15px) brightness(0.6); /* ДОБАВЛЯЕМ - размытие самой картинки и затемнение */
+  transform: scale(1.1); /* ДОБАВЛЯЕМ - небольшое увеличение для плавности */
+  filter: brightness(0.7);
+  transition: filter 0.3s ease;
+}
+.fullscreen-overlay.active .fullscreen-background {
+  filter: blur(10px) brightness(0.5);
+  transform: scale(1.15);
+}
+
+.fullscreen-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.fullscreen-image-container {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
+}
+/* Белый блок */
+.floating-white-block {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  top: 14vw;
+  left: 3vw;
+  background: white;
+  border-radius: 2vw;
+
+  height: 30vw;
+  width: 50vw;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  animation: blockSlideUp 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+  transform-origin: center;
+}
+.floating-image-container {
+  width: 17vw;
+  height: 30vw;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.floating-image {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 13vw;
+  height: 24vw;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.floating-white-block:hover .floating-image {
+  transform: scale(1.05);
+}
+
+/* Текстовый контент в белом блоке */
+.floating-text-content {
+  padding: 2vw;
+}
+
+.floating-title {
+  font-family: "Helvetica NeueLight";
+  font-size: 5vw;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000000;
+  position: relative;
+  display: inline-block;
+}
+
+.floating-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 5vw;
+  height: 0.23vw;
+  background: #000000;
+  transition: width 0.3s ease;
+}
+
+.floating-white-block:hover .floating-title::after {
+  width: 100%;
+}
+
+.floating-description {
+  font-family: "Helvetica NeueLight";
+  font-size: 5vw;
+  line-height: 1.6;
+  color: #000000;
+  margin: 20px 0 0 0;
+}
+
+/* Кнопка закрытия */
+.close-btn {
+  position: absolute;
+  top: 2.5vw;
+  right: 2.5vw;
+  background: none;
+  border: none;
+  font-size: 3vw;
+  cursor: pointer;
+  color: #ffffff;
+  transition: color 0.2s;
+  line-height: 1;
+  pointer-events: auto; /* Убедитесь, что он принимает клики */
+  z-index: 10000; /* Высокий z-index */
+}
+
+.floating-image-container {
+  height: 20vw;
+}
+
+.floating-title {
+  font-size: 2vw;
+}
+
+.floating-description {
+  font-size: 1vw;
+}
+/* Стили для полосок в белом блоке */
+
+.stripe {
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.stripe-left {
+  position: absolute;
+  top: -10vw;
+  left: 0vw;
+  width: 50vw;
+  height: 0.27vw;
+}
+.floating-title1 {
+  position: absolute;
+  top: -12vw;
+  left: 60vw;
+  color: white;
+  font-family: "Helvetica NeueRoman";
+  font-size: 4.5vw;
+}
+.ns {
+  font-family: "Charito";
+}
+.stripe-right {
+  position: absolute;
+  top: 13vw;
+  left: 75.5vw;
+  transform: rotate(90deg);
+  width: 35vw;
+  height: 0.27vw;
+}
+/* Анимация для карточек при клике */
+.moodCard {
+  cursor: pointer;
+  max-width: 100%;
+  transition:
+    transform 0.18s,
+    box-shadow 0.18s;
+}
+
+.moodCard:active {
+  transform: scale(0.98);
+}
+.moodCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+/* ===== Wave block (section3) ===== */
+.section3 {
+  padding: 2vw;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  height: 30vw;
+}
+
+.waveBlock {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.waveBars {
+  position: absolute;
+  inset: 0;
+  max-width: 82vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none; /* чтобы кнопка ловила клик поверх */
+}
+
+.waveBar {
+  width: 0.18vw;
+  background: #1e5dff;
+  border-radius: 999px;
+  height: 6vw;
+  /* transition:
+    height 500ms cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 250ms ease; */
+}
+
+.waveButton {
+  position: relative;
+  z-index: 1;
+  padding: 1.2vw 4.5vw;
+  border-radius: 20vw;
+  border: 1px solid #111;
+  background: #ffffff;
+  font-family: "Helvetica NeueLight";
+  font-size: 2.6vw;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.waveButton:hover {
+  background: #f4f7ff;
+}
+.waveBar:nth-of-type(2) {
+  height: 22vw;
+}
+
+.waveBar:nth-of-type(3) {
+  height: 25vw;
+}
+
+.waveBar:nth-of-type(4) {
+  height: 27vw;
+}
+
+.waveBar:nth-of-type(5) {
+  height: 13vw;
+}
+
+.waveBar:nth-of-type(6) {
+  height: 17vw;
+}
+
+.waveBar:nth-of-type(7) {
+  height: 25vw;
+}
+
+.waveBar:nth-of-type(8) {
+  height: 29vw;
+}
+
+.waveBar:nth-of-type(9) {
+  height: 26vw;
+}
+
+.waveBar:nth-of-type(10) {
+  height: 20vw;
+}
+
+.waveBar:nth-of-type(11) {
+  height: 23vw;
+}
+
+.waveBar:nth-of-type(12) {
+  height: 16vw;
+}
+
+.waveBar:nth-of-type(13) {
+  height: 15vw;
+}
+
+.waveBar:nth-of-type(14) {
+  height: 25vw;
+}
+
+.waveBar:nth-of-type(15) {
+  height: 30vw;
+}
+
+.waveBar:nth-of-type(16) {
+  height: 28vw;
+}
+.waveBar:nth-of-type(17) {
+  height: 25vw;
+}
+
+.waveBar:nth-of-type(18) {
+  height: 21vw;
+}
+
+.waveBar:nth-of-type(19) {
+  height: 16vw;
+}
+
+.waveBar:nth-of-type(20) {
+  height: 15vw;
+}
+
+.waveBar:nth-of-type(21) {
+  height: 10vw;
+}
+
+.waveBar:nth-of-type(22) {
+  height: 12vw;
+}
+
+.waveBar:nth-of-type(23) {
+  height: 15vw;
+}
+.waveBar:nth-of-type(24) {
+  height: 21vw;
+}
+
+.waveBar:nth-of-type(25) {
+  height: 16vw;
+}
+
+.waveBar:nth-of-type(26) {
+  height: 15vw;
+}
+
+.waveBar:nth-of-type(27) {
+  height: 10vw;
+}
+
+.waveBar:nth-of-type(28) {
+  height: 12vw;
+}
+
+.waveBar:nth-of-type(29) {
+  height: 15vw;
+}
+
+/* ===== Section 4: Собери капсулу ===== */
+.section4 {
+  position: relative;
+  display: block;
+  padding: 5vw 2vw;
+  min-height: 45vw;
+  z-index: 1;
+  overflow: visible;
+}
+
+.assemble-btn {
+  position: relative;
+  z-index: 1;
+  padding: 1.2vw 4.5vw;
+  border-radius: 20vw;
+  border: 1px solid #111;
+  background: #ffffff;
+  font-family: "Helvetica NeueLight";
+  font-size: 2.6vw;
+  text-transform: uppercase;
+  cursor: pointer;
+  top: 40vw;
+  left: 33%;
+}
+.assemble-btn:hover {
+  background: #f4f7ff;
+}
+
+.capsuleCluster {
+  position: absolute;
+  top: 6vw;
+  width: 50%;
+}
+
+.albumCover {
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+  transition:
+    filter 0.1s ease,
+    transform 0.05s linear;
+  z-index: 10;
+}
+.albumCover.dragging {
+  cursor: grabbing;
+  filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.4));
+  z-index: 9999;
+  transform: scale(1.02);
+  transition: none;
+}
+
+.image {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.albumCover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Примерное расположение обложек слева */
+.albumCover-1 {
+  left: 2vw;
+  top: 3vw;
+}
+.albumCover-2 {
+  left: 7vw;
+  top: 6vw;
+}
+.albumCover-3 {
+  left: 14vw;
+  top: 5vw;
+}
+.albumCover-4 {
+  left: 2vw;
+  top: 8vw;
+}
+.albumCover-5 {
+  left: 18vw;
+  top: 12vw;
+}
+.albumCover-6 {
+  left: 24vw;
+  top: 10vw;
+}
+
+/* Примерное расположение обложек справа */
+.albumCover-7 {
+  right: 2vw;
+  top: 30vw;
+}
+.albumCover-8 {
+  right: 10vw;
+  top: 25vw;
+}
+.albumCover-9 {
+  right: 18vw;
+  top: 30vw;
+}
+.albumCover-10 {
+  right: 4vw;
+  top: 23vw;
+}
+.albumCover-11 {
+  right: 12vw;
+  top: 32vw;
+}
+.albumCover-12 {
+  right: 25vw;
+  top: 27vw;
+}
+
+.capsule-animation-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.capsuleSection-inner {
+  position: relative;
+  min-height: 50vw;
+}
+
+.capsulePill {
+  position: absolute;
+  transition: all 0.8s cubic-bezier(0.34, 1.2, 0.64, 1);
+  cursor: pointer;
+  pointer-events: auto;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+  z-index: 1000;
+}
+.capsulePill-light {
+  top: 10vw;
+  left: 0vw;
+  width: 41vw;
+  height: 41vw;
+  transform: rotate(15deg);
+}
+.capsulePill-blue {
+  top: -9vw;
+  left: 51vw;
+  width: 40vw;
+  height: 40vw;
+  transform: rotate(15deg);
+}
+.animated-capsule.capsulePill-light.assembled {
+  left: 3vw;
+  top: 12vw;
+}
+
+.animated-capsule.capsulePill-blue.assembled {
+  left: 41vw;
+  top: -5vw;
+}
+
+.animated-capsule {
+  position: absolute;
+  transition: all 0.8s cubic-bezier(0.34, 1.2, 0.64, 1);
+  pointer-events: none; /* Капсулы тоже не перехватывают события */
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+  z-index: 1001;
+}
+
+.section5 {
+  position: relative;
+  display: block;
+  padding: 2vw;
+  min-height: 60vw;
+}
+
+/* стили плавающего */
+
+:root {
+  --shadow-offset: 0;
+  --shadow-blur: 20px;
+  --shadow-spread: -5px;
+  --shadow-color: rgba(190, 190, 190, 0.7);
+  --tint-color: 100, 100, 100;
+  --tint-opacity: 0.2;
+  --frost-blur: 1px;
+  --noise-frequency: 0.008;
+  --distortion-strength: 77;
+  --outer-shadow-blur: 20px;
+  --border-radius: 34% 66% 28% 72% / 55% 44% 56% 45%;
+}
+
+.box {
+  width: 25vw;
+  height: 25vw;
+  position: absolute;
+  top: 14%;
+  left: 30%;
+  isolation: isolate;
+  touch-action: none;
+  box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+/* Псевдоэлемент с фоном и тенью */
+.box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit; /* Наследуем форму родителя */
+  box-shadow: inset var(--shadow-offset) var(--shadow-offset) var(--shadow-blur)
+    var(--shadow-spread) var(--shadow-color);
+  background-color: rgba(var(--tint-color), var(--tint-opacity));
+}
+
+/* Псевдоэлемент с эффектом стекла */
+.box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit; /* Наследуем форму родителя */
+  backdrop-filter: blur(var(--frost-blur));
+  filter: url(#glass-distortion);
+  -webkit-backdrop-filter: blur(var(--frost-blur));
+  -webkit-filter: url(#glass-distortion);
+  pointer-events: none; /* Чтобы не мешать кликам */
+}
+.capsuleAbout {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-family: "Helvetica NeueLight";
+  font-size: 2.6vw;
+  text-transform: uppercase;
+  padding-bottom: 2vw;
+}
+.bigText {
+  display: block;
+  justify-content: center;
+  padding: 0vw 10vw 0vw 10vw;
+  font-family: "Helvetica NeueLight";
+  font-size: 3vw;
+  text-align: justify;
+}
+
+.section6 {
+  display: block;
+  padding: 2vw;
+}
+
+.begstroka {
+  display: block;
+  background-color: #ffffff;
+  border-radius: 100px;
+  border: 1px solid black;
+  width: 100%;
+  height: 5.9vw;
+  overflow: hidden;
+}
+
+.run {
+  padding: 1vw 1vw;
+  font-size: 4.15vw;
+  font-family: "Helvetica NeueLight";
+  color: rgb(0, 0, 0);
+  width: 200%;
+  animation: begstroka 4.5s infinite linear;
+  white-space: nowrap;
+}
+
+.ns-item {
+  font-family: "Charito";
+}
+
+.studio-item {
+  font-family: "Helvetica NeueLight";
+}
+
+.ns-item:hover + .studio-item,
+.ns-item:has(+ .studio-item:hover) {
+  color: #4695f4;
+}
+
+.ns-item:hover,
+.studio-item:hover {
+  color: #4695f4;
+}
+
+.section7 {
+  display: block;
+  padding: 2vw;
+}
+.Podberi {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-family: "Helvetica NeueLight";
+  font-size: 2.6vw;
+  text-transform: uppercase;
+  padding-bottom: 2vw;
+}
+.stepped-slider {
+  position: relative;
+  width: 80vw;
+  height: 10vw;
+  margin-left: 8%;
+  margin-top: 2%;
+}
+
+.slider-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1vw;
+  background: #a3cafa;
+  border-radius: 20vw;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+}
+.slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #4695f4;
+  border-radius: 20vw;
+  pointer-events: none;
+  z-index: 1;
+}
+.mark {
+  width: 0.5vw;
+  height: 1.6vw;
+  background: #4695f4;
+  margin-top: 4vw;
+}
+.stepstext {
+  display: flex;
+  padding: 1.3vw 3vw;
+  text-align: center;
+  width: 91vw;
+  justify-content: space-between;
+  font-size: 1.7vw;
+  font-family: "Helvetica NeueLight";
+}
+.slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 2.5vw;
+  height: 2.5vw;
+  background: #a3cafa;
+  border-radius: 40%;
+  border: #4695f4 solid 0.3vw;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s;
+}
+
+.chasiIslider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20vw;
+}
+/* часы 1 */
+.chasi {
+  display: flex;
+  justify-content: space-between;
+  width: 40vw;
+  padding: 5vw 2vw;
+}
+
+.large.row {
+  height: 4vw;
+}
+
+.col {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.clock {
+  z-index: 2;
+  position: relative;
+  width: 7vw;
+  height: 7vw;
+  border-radius: 50%;
+  border: 0.5vw solid #4695f4;
+}
+
+.clock::after {
+  content: "";
+  position: absolute;
+  top: 0.2vw;
+  left: 3vw;
+  width: 0.4vw;
+  height: 1.9vw;
+  border-radius: 20vw;
+  background-color: #4695f4;
+  transform-origin: center bottom; /* Точка вращения - центр внизу стрелки */
+  transform: rotate(var(--rotate, 0deg)); /* Вращение через CSS-переменную */
+  transition: transform 0.05s linear; /* Плавное движение */
+}
+
+/* Стрелку можно убрать или оставить как декоративный элемент */
+.strelka {
+  position: absolute;
+  left: 3.3vw;
+  top: 0.6vw;
+  width: 0.4vw;
+  height: 1.9vw;
+  border-radius: 20vw;
+  background-color: #a3cafa;
+  pointer-events: none; /* Чтобы не мешала кликам */
+}
+/* переключатель */
+
+.sliderBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 5vw;
+  gap: 2vw;
+}
+
+.grustno {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 2vw;
+}
+.veselo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2vw;
+}
+.slider-thumb:active {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.sliderText {
+  font-size: 2.3vw;
+  font-family: "Helvetica NeueLight";
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 7vw;
+  height: 3vw;
+  background-color: #ffffff;
+}
+
+.switch_input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.large centered row {
+  display: flex;
+}
+
+.switch_slider {
+  position: absolute;
+  background-color: #ffffff;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50px;
+  border: 0.3vw solid #4695f4;
+  transition: 0.5s ease;
+}
+
+.switch_slider::before {
+  content: "";
+  position: absolute;
+  left: -0.9%;
+  top: -2.9%;
+  width: 2.75vw;
+  height: 2.75vw;
+  border-radius: 5rem;
+  background-color: #4695f4;
+}
+
+.switch_input:checked + .switch_slider {
+  background-color: #a3cafa;
+}
+
+.switch_input:checked + .switch_slider::before {
+  transform: translateX(140%);
+  background-color: #4695f4;
+}
+
+.section8 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 2vw;
+}
+.ShowButton {
+  display: flex;
+  padding: 1.2vw 4.5vw;
+  border-radius: 20vw;
+  border: 1px solid #111;
+  background: #ffffff;
+  font-family: "Helvetica NeueLight";
+  font-size: 2.6vw;
+  cursor: pointer;
+}
+.ShowButton:hover {
+  background: #f4f7ff;
+}
+body.modal-open {
+  overflow: hidden;
+}
+.progruz.spinning {
+  animation: spin 1s linear infinite;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease,
+    visibility 0s linear 0.25s;
+}
+/* Всплывающая секция (модальное окно) */
+.popup-section {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: 45vw;
+  height: 35vw;
+  background: #ffffff;
+  border: 0.1vw black solid;
+  border-radius: 5vw;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0s linear 0.25s;
+  overflow-y: auto;
+  font-family: "Helvetica NeueRoman";
+}
+
+.progruz {
+  width: 17vw;
+  height: 17vw;
+  position: absolute;
+  top: 13vw;
+  left: 32%;
+}
+
+/* Стили внутри всплывающей секции */
+.popup-section h2 {
+  font-size: 3vw;
+  color: #000000;
+  font-family: "Helvetica NeueRoman";
+  position: absolute;
+  top: 7vw;
+  left: 24%;
+}
+
+/* Специальная кнопка-крестик (опционально) */
+.close-icon {
+  position: absolute;
+  top: 2.5vw;
+  right: 2.5vw;
+  background: none;
+  border: none;
+  font-size: 2vw;
+  cursor: pointer;
+  color: #000000;
+  transition: color 0.2s;
+  line-height: 1;
+  pointer-events: auto; /* Убедитесь, что он принимает клики */
+  z-index: 10000; /* Высокий z-index */
+}
+.close-icon:hover {
+  color: #000000;
+}
+
+/* Состояние "открыто" для модалки и оверлея */
+body.modal-open .overlay,
+body.modal-open .popup-section {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.modal-open .popup-section {
+  transform: translate(-50%, -50%) scale(1);
+}
+.extra-content {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* Анимация для картинки */
+.progruz {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+/* Стили для динамического контента в модальном окне */
+#popupContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#popupTitle {
+  font-size: 2vw;
+  font-family: "Helvetica NeueRoman";
+  color: #000000;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+#popupImage {
+  width: 15vw;
+  height: 15vw;
+  align-items: center;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  top: 13vw;
+}
+
+#extraText {
+  position: absolute;
+  text-align: center;
+  top: 30vw;
+}
+
+.recommendation-card {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.recommendation-card p {
+  font-size: 1vw;
+  line-height: 1.4;
+  font-family: "Helvetica NeueRoman";
+}
+
+.section9 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 2vw;
+}
+.arena {
+  position: relative;
+  width: 98vw;
+  height: 45vw;
+  overflow: hidden;
+  border: 0.1vw #111 solid;
+  border-radius: 10vw;
+}
+
+.floating-img {
+  position: absolute;
+  cursor: pointer;
+  will-change: transform, left, top;
+  object-fit: cover;
+  pointer-events: auto;
+  transition: transform 0.1s ease; /* Плавный поворот при тряске */
+}
+.floating-img img {
+  width: 20vw;
+  height: 35vw;
+  display: block;
+  object-fit: cover;
+}
+
+.floating-img.paused {
+  animation-play-state: paused !important;
+}
+
+.floating-img.shake img {
+  animation: shakeEffect 0.12s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+.section10 {
+  display: block;
+  position: relative;
+}
+.podval {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2vw;
+}
+.name,
+.group {
+  font-family: "Helvetica NeueRoman";
+  font-size: 2vw;
 }
