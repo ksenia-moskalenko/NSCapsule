@@ -1530,7 +1530,7 @@ const moodData = {
   0: {
     title: "КАПСУЛА ECHO",
     backgroundImage: "../images/photoCalm.jpg",
-    cardImage: "../images/capsuleGreen2.svg",
+    cardImage: "images/capsuleGreen2.svg",
     description: "позволяет нам ясно мыслить и принимать взвешенные решения",
   },
   1: {
