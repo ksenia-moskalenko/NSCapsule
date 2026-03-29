@@ -151,8 +151,6 @@ function initThree() {
 
     if (rotXElem) rotXElem.textContent = formattedX;
     if (rotYElem) rotYElem.textContent = formattedY;
-
-    console.log(`Азимут: ${formattedY}, Полярный: ${formattedX}`);
   }
   // Анимация
   function animate() {
@@ -1253,7 +1251,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Функция отображения загрузочного состояния
   function showLoadingState() {
-    console.log("🔄 Показываем загрузочное состояние");
     if (popupTitle) {
       popupTitle.textContent = "ИДЁТ ПОДБОР...";
       popupTitle.style.color = "#000000";
@@ -1277,7 +1274,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Функция отображения результата (капсула + текст)
   function showResultState() {
     if (isContentChanged) {
-      console.log("Результат уже показан, просто обновляем капсулу");
       const content = getResultContent();
 
       if (popupImage) {
@@ -1301,7 +1297,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    console.log("🎉 Показываем результат после 5 секунд");
     const content = getResultContent();
 
     if (popupTitle) {
@@ -1339,7 +1334,6 @@ document.addEventListener("DOMContentLoaded", function () {
           isContentChanged &&
           document.body.classList.contains("modal-open")
         ) {
-          console.log("🔄 Ползунок изменился, обновляем капсулу");
           showResultState();
         }
       });
@@ -1355,9 +1349,6 @@ document.addEventListener("DOMContentLoaded", function () {
           isContentChanged &&
           document.body.classList.contains("modal-open")
         ) {
-          console.log(
-            '🔄 Переключатель "грустно" изменился, обновляем капсулу',
-          );
           showResultState();
         }
       });
@@ -1369,7 +1360,6 @@ document.addEventListener("DOMContentLoaded", function () {
           isContentChanged &&
           document.body.classList.contains("modal-open")
         ) {
-          console.log('🔄 Переключатель "весело" изменился, обновляем капсулу');
           showResultState();
         }
       });
@@ -1378,8 +1368,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Функция открытия окна
   function openPopup() {
-    console.log("✅ Открываем окно");
-
     // Сохраняем ширину скроллбара
     scrollbarWidth = getScrollbarWidth();
 
@@ -1402,15 +1390,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Запускаем таймер на 5 секунд
     changeTimer = setTimeout(function () {
       if (document.body.classList.contains("modal-open")) {
-        console.log("⏰ Прошло 5 секунд, показываем результат");
-        showResultState();
       }
     }, 5000);
   }
 
   // Функция закрытия окна
   function closePopup() {
-    console.log("❌ Закрываем окно");
     document.body.classList.remove("modal-open");
 
     // Убираем компенсационный отступ
@@ -1434,16 +1419,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Добавляем обработчики для модального окна
   if (openBtn) {
     openBtn.addEventListener("click", openPopup);
-    console.log("✅ Обработчик добавлен для кнопки открытия");
   } else {
     console.error('❌ Кнопка с id="show-button" не найдена!');
   }
 
   // Обработчик для крестика
   if (closeIcon) {
-    console.log("✅ Крестик найден, добавляем обработчик");
     closeIcon.addEventListener("click", function (e) {
-      console.log("🖱️ Клик по крестику!");
       e.stopPropagation();
       closePopup();
     });
@@ -1453,15 +1435,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (overlay) {
     overlay.addEventListener("click", function (e) {
-      console.log("🖱️ Клик по оверлею");
       closePopup();
     });
-    console.log("✅ Обработчик добавлен для оверлея");
   }
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && document.body.classList.contains("modal-open")) {
-      console.log("⌨️ Нажата клавиша Escape");
       closePopup();
     }
   });
